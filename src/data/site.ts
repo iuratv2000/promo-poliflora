@@ -9,6 +9,8 @@ export const site = {
   name: 'Dor de Miere',
   telegramUrl: 'https://t.me/dordemiere_md',
   instagramUrl: 'https://instagram.com/dordemiere_md',
+  phone: '+373 69 396 624',
+  phoneHref: 'tel:+37369396624',
 
   nav: [
     { href: '#offer', label: 'Выбрать объём' },

@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Phone } from 'lucide-react'
 import { site } from '@/data/site'
 
 export function Header() {
@@ -15,11 +15,14 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <Button asChild>
-          <a href={site.telegramUrl} target="_blank" rel="noreferrer">
-            Заказать
-          </a>
-        </Button>
+        <a
+          href={site.phoneHref}
+          aria-label={site.phone}
+          className="flex items-center gap-1.5 text-sm text-foreground transition-colors hover:text-primary"
+        >
+          <Phone className="size-4" strokeWidth={1.75} />
+          <span className="hidden sm:inline">{site.phone}</span>
+        </a>
       </div>
     </header>
   )
