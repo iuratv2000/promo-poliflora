@@ -1,0 +1,257 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* Variable fonts, self-hosted (no external font requests) */
+@import '@fontsource-variable/playfair-display/wght.css'; /* heading — warm editorial serif, Cyrillic-capable (site copy is Russian) */
+@import '@fontsource-variable/inter'; /* body — neutral, highly readable, full Cyrillic */
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Dor de Miere — design system
+ * Brand mood: warm, natural, premium craft honey, autumn.
+ * Locked via the ui-ux-pro-max skill before any component work started —
+ * every component must read colors/fonts from these tokens, never hardcode.
+ */
+@theme inline {
+  --font-heading: 'Playfair Display Variable', ui-serif, Georgia, serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* raw palette scale — for one-off utilities like bg-honey-500, text-wood-700 */
+  --color-honey-50: #fdf6e9;
+  --color-honey-100: #faebce;
+  --color-honey-200: #f3d89a;
+  --color-honey-300: #ebc167;
+  --color-honey-400: #dfa639;
+  --color-honey-500: #cc8a14;
+  --color-honey-600: #a8700d;
+  --color-honey-700: #7e540a;
+  --color-honey-800: #573a07;
+  --color-honey-900: #362405;
+
+  --color-wood-50: #faf5ee;
+  --color-wood-100: #f0e4d3;
+  --color-wood-200: #e1ccac;
+  --color-wood-300: #cbab80;
+  --color-wood-400: #b08a5c;
+  --color-wood-500: #8f6b42;
+  --color-wood-600: #6e5133;
+  --color-wood-700: #503a26;
+  --color-wood-800: #35271a;
+  --color-wood-900: #1e160e;
+
+  --color-cream: #fbf6ec;
+  --color-cream-muted: #f3ebda;
+  --color-ink: #2b1b0e;
+
+  /* semantic roles (shadcn/ui contract) */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  /* soft, generous rounding — minimal + organic, not sharp/corporate */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* one warm, soft shadow scale — no harsh/black shadows anywhere */
+  --shadow-color: 30 45% 12%;
+  --shadow-soft: 0 1px 2px hsl(var(--shadow-color) / 0.04), 0 8px 24px -8px hsl(var(--shadow-color) / 0.12);
+  --shadow-lift: 0 4px 8px hsl(var(--shadow-color) / 0.06), 0 16px 40px -12px hsl(var(--shadow-color) / 0.18);
+}
+
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
+  --card: #fffdf8;
+  --card-foreground: var(--color-ink);
+  --popover: #fffdf8;
+  --popover-foreground: var(--color-ink);
+
+  --primary: var(--color-honey-500);
+  --primary-foreground: var(--color-ink); /* #fffbef on honey-500 was 2.81:1 — fails WCAG AA (4.5:1); ink gives 5.7:1 */
+  --secondary: var(--color-wood-100);
+  --secondary-foreground: var(--color-wood-700);
+  --muted: var(--color-cream-muted);
+  --muted-foreground: #5b4636;
+
+  /* the ONE accent — reserved for the single hero visual moment + focus rings,
+     not sprinkled across every section */
+  --accent: var(--color-wood-500);
+  --accent-foreground: #fffdf8;
+
+  --destructive: #b3261e;
+  --destructive-foreground: #fffdf8;
+
+  --border: #e6d8bf;
+  --input: #e6d8bf;
+  --ring: var(--color-honey-500);
+
+  --chart-1: var(--color-honey-500);
+  --chart-2: var(--color-wood-500);
+  --chart-3: var(--color-honey-400);
+  --chart-4: var(--color-wood-400);
+  --chart-5: var(--color-honey-800);
+
+  --radius: 0.85rem;
+
+  --sidebar: var(--color-cream);
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-honey-500);
+  --sidebar-primary-foreground: var(--color-ink);
+  --sidebar-accent: var(--color-wood-100);
+  --sidebar-accent-foreground: var(--color-wood-700);
+  --sidebar-border: #e6d8bf;
+  --sidebar-ring: var(--color-honey-500);
+}
+
+/*
+ * No dark mode for this brand — an autumn/craft-honey site reads as a warm,
+ * lit, paper-and-honey surface; a black "dark mode" would break that mood.
+ * .dark mirrors :root so nothing silently breaks if a component checks it.
+ */
+.dark {
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
+  --card: #fffdf8;
+  --card-foreground: var(--color-ink);
+  --popover: #fffdf8;
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-honey-500);
+  --primary-foreground: var(--color-ink); /* #fffbef on honey-500 was 2.81:1 — fails WCAG AA (4.5:1); ink gives 5.7:1 */
+  --secondary: var(--color-wood-100);
+  --secondary-foreground: var(--color-wood-700);
+  --muted: var(--color-cream-muted);
+  --muted-foreground: #5b4636;
+  --accent: var(--color-wood-500);
+  --accent-foreground: #fffdf8;
+  --destructive: #b3261e;
+  --destructive-foreground: #fffdf8;
+  --border: #e6d8bf;
+  --input: #e6d8bf;
+  --ring: var(--color-honey-500);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
+  }
+
+  /* clear the sticky header when an anchor nav link (or #hash link) jumps to a section */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* respect reduced-motion everywhere, per the ui-ux-pro-max accessibility rule */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/*
+ * Hero jar float — same technique as the main brand site (dordemiere.pages.dev):
+ * the jar drifts up/down, and a separate grounding shadow beneath it shrinks +
+ * fades in sync, so the shadow reads as the jar lifting away from the floor.
+ */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes hero-shadow-float {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.68, 0.6);
+    opacity: 0.55;
+  }
+}
+
+.hero-jar {
+  animation: hero-float 4.5s ease-in-out infinite;
+}
+
+.hero-jar-visual {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-jar-visual::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 62%;
+  height: 28px;
+  border-radius: var(--radius-full, 999px);
+  background: radial-gradient(
+    ellipse at center,
+    hsl(var(--shadow-color) / 0.95) 0%,
+    hsl(var(--shadow-color) / 0.55) 45%,
+    hsl(var(--shadow-color) / 0) 78%
+  );
+  filter: blur(4px);
+  transform: translateX(-50%);
+  animation: hero-shadow-float 4.5s ease-in-out infinite;
+  z-index: -1;
+}
