@@ -45,11 +45,13 @@ npm run preview   # preview the production build locally
 
 ## Deploying to Cloudflare Pages
 
-Either connect the repo in the Cloudflare dashboard (build command `npm run build`, output directory `dist`), or deploy from the CLI:
+Static site, no Workers/Functions — deploy via the classic Cloudflare Pages Git integration (dashboard → Workers & Pages → Connect to Git → build command `npm run build`, build output directory `dist`). That flow builds and deploys automatically on every push to `main`, with auth handled by Cloudflare — no API token or `wrangler.toml` needed.
+
+To deploy from the CLI instead:
 
 ```sh
 npm run build
-npx wrangler pages deploy dist
+npx wrangler pages deploy dist --project-name=promo-poliflora
 ```
 
-`wrangler.toml` pins the project name and output directory. `public/_headers` sets basic security headers and long-lived caching for hashed assets.
+`public/_headers` sets basic security headers and long-lived caching for hashed assets.
