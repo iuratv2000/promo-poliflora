@@ -18,7 +18,7 @@ export function Hero() {
 
       <div className="mx-auto grid max-w-6xl items-center gap-6 px-6 py-8 md:grid-cols-2 md:gap-12 md:py-28">
         <div className="text-center md:text-left">
-          <Badge className="mb-4 h-auto animate-in fade-in slide-in-from-bottom-2 px-3 py-1.5 text-sm font-semibold tracking-wide uppercase duration-500 md:mb-6">
+          <Badge className="mb-4 h-auto animate-in fade-in slide-in-from-bottom-2 px-2.5 py-1 text-sm font-semibold tracking-wide uppercase duration-500 md:mb-6">
             {site.hero.eyebrow}
           </Badge>
           <h1 className="text-4xl text-foreground animate-in fade-in slide-in-from-bottom-3 duration-500 md:text-5xl lg:text-6xl">
