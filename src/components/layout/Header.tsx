@@ -17,11 +17,10 @@ export function Header() {
         </nav>
         <a
           href={site.phoneHref}
-          aria-label={site.phone}
-          className="flex items-center gap-1.5 text-sm text-foreground transition-colors hover:text-primary"
+          className="flex items-center gap-1.5 text-sm whitespace-nowrap text-foreground transition-colors hover:text-primary"
         >
-          <Phone className="size-4" strokeWidth={1.75} />
-          <span className="hidden sm:inline">{site.phone}</span>
+          <Phone className="size-4 shrink-0" strokeWidth={1.75} />
+          {site.phone}
         </a>
       </div>
     </header>
